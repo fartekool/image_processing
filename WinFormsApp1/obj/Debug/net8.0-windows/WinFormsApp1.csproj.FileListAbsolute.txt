@@ -14,3 +14,20 @@ C:\Users\levon\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\r
 C:\Users\levon\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
 C:\Users\levon\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\levon\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.exe
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.deps.json
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.dll
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.pdb
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Form1.resources
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.dll
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\refint\WinFormsApp1.dll
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\alext\OneDrive\Рабочий стол\image processing\image_processing\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll

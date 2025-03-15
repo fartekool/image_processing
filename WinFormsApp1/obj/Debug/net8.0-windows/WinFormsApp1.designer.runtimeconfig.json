@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\levon\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\levon\\.nuget\\packages"
+      "C:\\Users\\alext\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\alext\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,

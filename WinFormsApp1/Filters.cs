@@ -222,28 +222,20 @@ namespace WinFormsApp1
             return resultColor;
         }
     }
+
+    class GlassFilter : Filters
+    {
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+			Random rand = new Random();
+            int newX = Clamp(x + (int)((rand.NextDouble() - 0.5) * 10), 0, sourceImage.Width - 1);
+            int newY = Clamp(y + (int)((rand.NextDouble() - 0.5) * 10), 0, sourceImage.Height - 1);
+            return sourceImage.GetPixel(newX, newY);
+		}
+	}
     class ShiftFilter : Filters
     {
-        //public Bitmap processImage(Bitmap sourceImage)
-        //{
-        //    Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
-        //    for (int i = 0; i < sourceImage.Width; ++i)
-        //    {
-        //        for (int j = 0; j < sourceImage.Height; ++j)
-        //        {
-        //            resultImage.SetPixel(i, j, Color.FromArgb(0, 0, 0));
-        //        }
-        //    }
-        //    for (int i = 50; i < sourceImage.Width; ++i)
-        //    {
-        //        for (int j = 0; j < sourceImage.Height; ++j)
-        //        {
-        //            Color sourceColor = sourceImage.GetPixel(i - 50, j);
-        //            resultImage.SetPixel(i, j, sourceColor);
-        //        }
-        //    }
-        //    return resultImage;
-        //}
+        
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             Color sourceColor = sourceImage.GetPixel(x, y);
