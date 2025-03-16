@@ -136,5 +136,35 @@ namespace WinFormsApp1
 			Filters filter = new GlassFilter();
 			backgroundWorker1.RunWorkerAsync(filter);
 		}
+
+		private void èäåàëüíûéÎòğàæàòåëüToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Filters filter = new IdealReflectorFilter();
+			backgroundWorker1.RunWorkerAsync(filter);
+		}
+
+		private void ğàñøèğåíèåToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Filters filter = new ExtensionFilter();
+			backgroundWorker1.RunWorkerAsync(filter);
+		}
+
+		private void ñóæåíèåToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Filters filter = new ConstrictionFilter();
+			backgroundWorker1.RunWorkerAsync(filter);
+		}
+
+		private void ìåäèàíàToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Filters filter = new MedianFilter();
+			backgroundWorker1.RunWorkerAsync(filter);
+		}
+
+		private void ôèëüòğØàğğàToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Filters filter = new SharraFilter();
+			backgroundWorker1.RunWorkerAsync(filter);
+		}
 	}
 }

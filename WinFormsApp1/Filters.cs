@@ -145,9 +145,15 @@ namespace WinFormsApp1
         };
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
-            int GxSum = 0, GySum = 0;
+            int GxR = 0;
+            int GxG = 0;
+            int GxB = 0;
 
-            for (int l = -1; l <= 1; ++l)
+			int GyR = 0;
+			int GyG = 0;
+			int GyB = 0;
+
+			for (int l = -1; l <= 1; ++l)
             {
                 for (int k = -1; k <= 1; ++k)
                 {
@@ -155,20 +161,74 @@ namespace WinFormsApp1
                     int idY = Clamp(y+k, 0, sourceImage.Height - 1);
 
                     Color pixel = sourceImage.GetPixel(idX, idY);
-                    int grayValue = (int)(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B);
 
-                    GxSum += grayValue * Gx[l + 1, k + 1];
-                    GySum += grayValue * Gy[l + 1, k + 1];
+					GxR += pixel.R * Gx[l + 1, k + 1];
+					GxG += pixel.G * Gx[l + 1, k + 1];
+					GxB += pixel.B * Gx[l + 1, k + 1];
 
-                }
+					GyR += pixel.R * Gy[l + 1, k + 1];
+					GyG += pixel.G * Gy[l + 1, k + 1];
+					GyB += pixel.B * Gy[l + 1, k + 1];
+
+				}
             }
-            int gradient = (int)Math.Sqrt(GxSum * GxSum + GySum * GySum);
-            gradient = Clamp(gradient, 0, 255);
+            int gradientR = Clamp((int)Math.Sqrt(GxR * GxR + GyR * GyR), 0, 255);
+			int gradientG = Clamp((int)Math.Sqrt(GxG * GxG + GyG * GyG), 0, 255);
+			int gradientB = Clamp((int)Math.Sqrt(GxB * GxB + GyB * GyB), 0, 255);
 
-            return Color.FromArgb(gradient, gradient, gradient);
+			return Color.FromArgb(gradientR, gradientG, gradientB);
         }
     }
-    class InvertFilter : Filters
+
+	class SharraFilter : Filters
+	{
+		private readonly int[,] Gx = {
+		{ -3,  0,  3 },
+		{ -10,  0,  10 },
+		{ -3,  0,  3 }
+		};
+		private readonly int[,] Gy = {
+		{ -3, -10, -3 },
+		{  0,  0,  0 },
+		{  3,  10,  3 }
+		};
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+			int GxR = 0;
+			int GxG = 0;
+			int GxB = 0;
+
+			int GyR = 0;
+			int GyG = 0;
+			int GyB = 0;
+
+			for (int l = -1; l <= 1; ++l)
+			{
+				for (int k = -1; k <= 1; ++k)
+				{
+					int idX = Clamp(x + l, 0, sourceImage.Width - 1);
+					int idY = Clamp(y + k, 0, sourceImage.Height - 1);
+
+					Color pixel = sourceImage.GetPixel(idX, idY);
+
+					GxR += pixel.R * Gx[l + 1, k + 1];
+					GxG += pixel.G * Gx[l + 1, k + 1];
+					GxB += pixel.B * Gx[l + 1, k + 1];
+
+					GyR += pixel.R * Gy[l + 1, k + 1];
+					GyG += pixel.G * Gy[l + 1, k + 1];
+					GyB += pixel.B * Gy[l + 1, k + 1];
+
+				}
+			}
+			int gradientR = Clamp((int)Math.Sqrt(GxR * GxR + GyR * GyR), 0, 255);
+			int gradientG = Clamp((int)Math.Sqrt(GxG * GxG + GyG * GyG), 0, 255);
+			int gradientB = Clamp((int)Math.Sqrt(GxB * GxB + GyB * GyB), 0, 255);
+
+			return Color.FromArgb(gradientR, gradientG, gradientB);
+		}
+	}
+	class InvertFilter : Filters
     {
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
@@ -354,5 +414,150 @@ namespace WinFormsApp1
             return resultColor;
         }
     }
-    
+
+	class IdealReflectorFilter : Filters
+	{
+
+		public int maxR = -1;
+		public int maxG = -1;
+		public int maxB = -1;
+
+		public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+		{
+			Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+			for (int i = 0; i < sourceImage.Width; ++i)
+			{
+				for (int j = 0; j < sourceImage.Height; ++j)
+				{
+					Color pixel = sourceImage.GetPixel(i, j);
+
+					maxR = Math.Max(maxR, pixel.R);
+					maxG = Math.Max(maxG, pixel.G);
+					maxB = Math.Max(maxB, pixel.B);
+				}
+			}
+			for (int i = 0; i < sourceImage.Width; ++i)
+			{
+				worker.ReportProgress((int)((float)i / resultImage.Width * 100));
+				if (worker.CancellationPending)
+					return null;
+				for (int j = 0; j < sourceImage.Height; ++j)
+				{
+					resultImage.SetPixel(i, j, calculateNewPixelColor(sourceImage, i, j));
+				}
+			}
+			return resultImage;
+		}
+
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+			Color sourceColor = sourceImage.GetPixel(x, y);
+			int newR = Clamp((int)((float)sourceColor.R * (float)255 / (float)maxR), 0, 255);
+			int newG = Clamp((int)((float)sourceColor.G * (float)255 / (float)maxG), 0, 255);
+			int newB = Clamp((int)((float)sourceColor.B * (float)255 / (float)maxB), 0, 255);
+			Color resultColor = Color.FromArgb(newR, newG, newB);
+			return resultColor;
+		}
+	}
+
+    class ExtensionFilter : Filters
+    {
+
+        bool[,] kernel = new bool[3, 3] {
+            {false, true, false },
+            {true, true, true },
+            {false, true, false }
+        };
+
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+            int maxR = -1;
+            int maxG = -1;
+            int maxB = -1;
+
+            for (int l = -1; l <= 1; ++l)
+            {
+                for (int k = -1; k <= 1; ++k)
+                {
+                    if (kernel[l+1, k+1] && (x+l) >= 0 && (x+l)<sourceImage.Width && (y+k)>=0 && (y+k)<sourceImage.Height)
+                    {
+                        maxR = Math.Max(maxR, sourceImage.GetPixel(x + l, y + k).R);
+						maxG = Math.Max(maxG, sourceImage.GetPixel(x + l, y + k).G);
+						maxB = Math.Max(maxB, sourceImage.GetPixel(x + l, y + k).B);
+
+					}
+                }
+            }
+
+            Color resultColor = Color.FromArgb(maxR, maxG, maxB);
+            return resultColor;
+		}
+	}
+
+	class ConstrictionFilter : Filters
+	{
+
+		bool[,] kernel = new bool[3, 3] {
+			{false, true, false },
+			{true, true, true },
+			{false, true, false }
+		};
+
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+			int minR = 256;
+			int minG = 256;
+			int minB = 256;
+
+			for (int l = -1; l <= 1; ++l)
+			{
+				for (int k = -1; k <= 1; ++k)
+				{
+					if (kernel[l + 1, k + 1] && (x + l) >= 0 && (x + l) < sourceImage.Width && (y + k) >= 0 && (y + k) < sourceImage.Height)
+					{
+						minR = Math.Min(minR, sourceImage.GetPixel(x + l, y + k).R);
+						minG = Math.Min(minG, sourceImage.GetPixel(x + l, y + k).G);
+						minB = Math.Min(minB, sourceImage.GetPixel(x + l, y + k).B);
+
+					}
+				}
+			}
+
+			Color resultColor = Color.FromArgb(minR, minG, minB);
+			return resultColor;
+		}
+	}
+
+    class MedianFilter : Filters
+    {
+		protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+		{
+			List<int> R = new List<int>();
+            List<int> G = new List<int>();
+            List<int> B = new List<int>();
+
+            for (int l = -1; l <= 1; ++l)
+            {
+                for (int k = -1; k <= 1; ++k)
+                {
+                    int X = Clamp(x + l, 0, sourceImage.Width - 1);
+                    int Y = Clamp(y + k, 0, sourceImage.Height - 1);
+
+                    Color neighborColor = sourceImage.GetPixel(X, Y);
+
+                    R.Add(neighborColor.R);
+                    G.Add(neighborColor.G);
+                    B.Add(neighborColor.B);
+                }
+            }
+
+            R.Sort();
+            G.Sort();
+            B.Sort();
+
+            Color resultColor = Color.FromArgb(R[R.Count/2], G[G.Count/2], B[B.Count/2]);
+
+            return resultColor;
+		}
+	}
 }

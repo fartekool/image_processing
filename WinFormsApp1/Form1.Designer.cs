@@ -41,16 +41,20 @@
 			сдвигВправоНа50ToolStripMenuItem = new ToolStripMenuItem();
 			серыйМирToolStripMenuItem = new ToolStripMenuItem();
 			растяжениеКонтрасToolStripMenuItem = new ToolStripMenuItem();
+			идеальныйОтражательToolStripMenuItem = new ToolStripMenuItem();
+			стеклоToolStripMenuItem = new ToolStripMenuItem();
 			матричныеToolStripMenuItem = new ToolStripMenuItem();
 			размытиеToolStripMenuItem = new ToolStripMenuItem();
 			тиснениеToolStripMenuItem = new ToolStripMenuItem();
 			motionBlurToolStripMenuItem = new ToolStripMenuItem();
 			фильтрСобеляToolStripMenuItem = new ToolStripMenuItem();
-			сбросФильтраToolStripMenuItem = new ToolStripMenuItem();
+			расширениеToolStripMenuItem = new ToolStripMenuItem();
+			сужениеToolStripMenuItem = new ToolStripMenuItem();
+			медианаToolStripMenuItem = new ToolStripMenuItem();
 			backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			progressBar1 = new ProgressBar();
 			button1 = new Button();
-			стеклоToolStripMenuItem = new ToolStripMenuItem();
+			фильтрШарраToolStripMenuItem = new ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			menuStrip1.SuspendLayout();
 			SuspendLayout();
@@ -93,14 +97,14 @@
 			// 
 			// фильтрыToolStripMenuItem
 			// 
-			фильтрыToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { точечныеToolStripMenuItem, матричныеToolStripMenuItem, сбросФильтраToolStripMenuItem });
+			фильтрыToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { точечныеToolStripMenuItem, матричныеToolStripMenuItem });
 			фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
 			фильтрыToolStripMenuItem.Size = new Size(131, 38);
 			фильтрыToolStripMenuItem.Text = "Фильтры";
 			// 
 			// точечныеToolStripMenuItem
 			// 
-			точечныеToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { инверсияToolStripMenuItem, оттенкиСерогоToolStripMenuItem, сепияToolStripMenuItem, повыситьЯркостьToolStripMenuItem, сдвигВправоНа50ToolStripMenuItem, серыйМирToolStripMenuItem, растяжениеКонтрасToolStripMenuItem, стеклоToolStripMenuItem });
+			точечныеToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { инверсияToolStripMenuItem, оттенкиСерогоToolStripMenuItem, сепияToolStripMenuItem, повыситьЯркостьToolStripMenuItem, сдвигВправоНа50ToolStripMenuItem, серыйМирToolStripMenuItem, растяжениеКонтрасToolStripMenuItem, идеальныйОтражательToolStripMenuItem, стеклоToolStripMenuItem });
 			точечныеToolStripMenuItem.Name = "точечныеToolStripMenuItem";
 			точечныеToolStripMenuItem.Size = new Size(359, 44);
 			точечныеToolStripMenuItem.Text = "Точечные";
@@ -154,9 +158,23 @@
 			растяжениеКонтрасToolStripMenuItem.Text = "Растяжение контрастности";
 			растяжениеКонтрасToolStripMenuItem.Click += растяжениеКонтрастностиToolStripMenuItem_Click;
 			// 
+			// идеальныйОтражательToolStripMenuItem
+			// 
+			идеальныйОтражательToolStripMenuItem.Name = "идеальныйОтражательToolStripMenuItem";
+			идеальныйОтражательToolStripMenuItem.Size = new Size(444, 44);
+			идеальныйОтражательToolStripMenuItem.Text = "Идеальный отражатель";
+			идеальныйОтражательToolStripMenuItem.Click += идеальныйОтражательToolStripMenuItem_Click;
+			// 
+			// стеклоToolStripMenuItem
+			// 
+			стеклоToolStripMenuItem.Name = "стеклоToolStripMenuItem";
+			стеклоToolStripMenuItem.Size = new Size(444, 44);
+			стеклоToolStripMenuItem.Text = "Стекло";
+			стеклоToolStripMenuItem.Click += стеклоToolStripMenuItem_Click;
+			// 
 			// матричныеToolStripMenuItem
 			// 
-			матричныеToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { размытиеToolStripMenuItem, тиснениеToolStripMenuItem, motionBlurToolStripMenuItem, фильтрСобеляToolStripMenuItem });
+			матричныеToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { размытиеToolStripMenuItem, тиснениеToolStripMenuItem, motionBlurToolStripMenuItem, фильтрСобеляToolStripMenuItem, расширениеToolStripMenuItem, сужениеToolStripMenuItem, медианаToolStripMenuItem, фильтрШарраToolStripMenuItem });
 			матричныеToolStripMenuItem.Name = "матричныеToolStripMenuItem";
 			матричныеToolStripMenuItem.Size = new Size(359, 44);
 			матричныеToolStripMenuItem.Text = "Матричные";
@@ -164,37 +182,51 @@
 			// размытиеToolStripMenuItem
 			// 
 			размытиеToolStripMenuItem.Name = "размытиеToolStripMenuItem";
-			размытиеToolStripMenuItem.Size = new Size(315, 44);
+			размытиеToolStripMenuItem.Size = new Size(359, 44);
 			размытиеToolStripMenuItem.Text = "Размытие";
 			размытиеToolStripMenuItem.Click += размытиеToolStripMenuItem_Click;
 			// 
 			// тиснениеToolStripMenuItem
 			// 
 			тиснениеToolStripMenuItem.Name = "тиснениеToolStripMenuItem";
-			тиснениеToolStripMenuItem.Size = new Size(315, 44);
+			тиснениеToolStripMenuItem.Size = new Size(359, 44);
 			тиснениеToolStripMenuItem.Text = "Тиснение";
 			тиснениеToolStripMenuItem.Click += тиснениеToolStripMenuItem_Click;
 			// 
 			// motionBlurToolStripMenuItem
 			// 
 			motionBlurToolStripMenuItem.Name = "motionBlurToolStripMenuItem";
-			motionBlurToolStripMenuItem.Size = new Size(315, 44);
+			motionBlurToolStripMenuItem.Size = new Size(359, 44);
 			motionBlurToolStripMenuItem.Text = "Motion Blur";
 			motionBlurToolStripMenuItem.Click += motionBlurToolStripMenuItem_Click;
 			// 
 			// фильтрСобеляToolStripMenuItem
 			// 
 			фильтрСобеляToolStripMenuItem.Name = "фильтрСобеляToolStripMenuItem";
-			фильтрСобеляToolStripMenuItem.Size = new Size(315, 44);
+			фильтрСобеляToolStripMenuItem.Size = new Size(359, 44);
 			фильтрСобеляToolStripMenuItem.Text = "Фильтр Собеля";
 			фильтрСобеляToolStripMenuItem.Click += фильтрСобеляToolStripMenuItem_Click;
 			// 
-			// сбросФильтраToolStripMenuItem
+			// расширениеToolStripMenuItem
 			// 
-			сбросФильтраToolStripMenuItem.Name = "сбросФильтраToolStripMenuItem";
-			сбросФильтраToolStripMenuItem.Size = new Size(359, 44);
-			сбросФильтраToolStripMenuItem.Text = "Сброс фильтра";
-			сбросФильтраToolStripMenuItem.Click += сбросФильтраToolStripMenuItem_Click;
+			расширениеToolStripMenuItem.Name = "расширениеToolStripMenuItem";
+			расширениеToolStripMenuItem.Size = new Size(359, 44);
+			расширениеToolStripMenuItem.Text = "Расширение";
+			расширениеToolStripMenuItem.Click += расширениеToolStripMenuItem_Click;
+			// 
+			// сужениеToolStripMenuItem
+			// 
+			сужениеToolStripMenuItem.Name = "сужениеToolStripMenuItem";
+			сужениеToolStripMenuItem.Size = new Size(359, 44);
+			сужениеToolStripMenuItem.Text = "Сужение";
+			сужениеToolStripMenuItem.Click += сужениеToolStripMenuItem_Click;
+			// 
+			// медианаToolStripMenuItem
+			// 
+			медианаToolStripMenuItem.Name = "медианаToolStripMenuItem";
+			медианаToolStripMenuItem.Size = new Size(359, 44);
+			медианаToolStripMenuItem.Text = "Медиана";
+			медианаToolStripMenuItem.Click += медианаToolStripMenuItem_Click;
 			// 
 			// backgroundWorker1
 			// 
@@ -223,12 +255,12 @@
 			button1.UseVisualStyleBackColor = true;
 			button1.Click += button1_Click;
 			// 
-			// стеклоToolStripMenuItem
+			// фильтрШарраToolStripMenuItem
 			// 
-			стеклоToolStripMenuItem.Name = "стеклоToolStripMenuItem";
-			стеклоToolStripMenuItem.Size = new Size(444, 44);
-			стеклоToolStripMenuItem.Text = "Стекло";
-			стеклоToolStripMenuItem.Click += стеклоToolStripMenuItem_Click;
+			фильтрШарраToolStripMenuItem.Name = "фильтрШарраToolStripMenuItem";
+			фильтрШарраToolStripMenuItem.Size = new Size(359, 44);
+			фильтрШарраToolStripMenuItem.Text = "Фильтр Шарра";
+			фильтрШарраToolStripMenuItem.Click += фильтрШарраToolStripMenuItem_Click;
 			// 
 			// Form1
 			// 
@@ -263,7 +295,6 @@
         private ToolStripMenuItem матричныеToolStripMenuItem;
         private ToolStripMenuItem оттенкиСерогоToolStripMenuItem;
         private ToolStripMenuItem сепияToolStripMenuItem;
-        private ToolStripMenuItem сбросФильтраToolStripMenuItem;
         private ToolStripMenuItem повыситьЯркостьToolStripMenuItem;
         private ToolStripMenuItem сдвигВправоНа50ToolStripMenuItem;
         private ToolStripMenuItem размытиеToolStripMenuItem;
@@ -276,5 +307,10 @@
         private ToolStripMenuItem растяжениеКонтрасToolStripMenuItem;
         private ToolStripMenuItem фильтрСобеляToolStripMenuItem;
 		private ToolStripMenuItem стеклоToolStripMenuItem;
+		private ToolStripMenuItem идеальныйОтражательToolStripMenuItem;
+		private ToolStripMenuItem расширениеToolStripMenuItem;
+		private ToolStripMenuItem сужениеToolStripMenuItem;
+		private ToolStripMenuItem медианаToolStripMenuItem;
+		private ToolStripMenuItem фильтрШарраToolStripMenuItem;
 	}
 }
